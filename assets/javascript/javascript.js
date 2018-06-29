@@ -1,13 +1,13 @@
 var topics = ["dog", "cat", "rabbit", "skunk", "goldfish", "bird", "ferret", "turtle", "sugar glider", "chinchilla", "hedgehog", "gerbil", "chicken", "capybara", "serval", "frog"];
 console.log(topics);
 var results;
-// displayMovieInfo function re-renders the HTML to display the appropriate content
+// displayAnimalInfo function re-renders the HTML to display the appropriate content
 function displayAnimalInfo() {
 
   var topic = $(this).attr("data-name");
   console.log(topic);
   var key = "dc6zaTOxFJmzC";
-  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=" + key + "&limit=10";
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=" + key + "&limit=10" + "gif-non-animated";
 
   console.log(queryURL);
 
@@ -20,62 +20,41 @@ function displayAnimalInfo() {
     results = response.data;
     for (var i = 0; i < results.length; i++) {
       // Creating and storing a div tag with class animal
-      var animalDiv = $("<div class = 'animal'>");
-      console.log(animalDiv);
-      // Storing the rating data
-      // var rating = response.Rated;
+      var animalDiv = $("<div class='col-md-4' 'animal'>");
+     
       // Creating a paragraph tag with the result item's rating
       var p1 = $("<p>").text("Rating: " + results[i].rating);
-      var animalImage = $("<img>");
-      animalImage.attr("src", results[i].images.fixed_height.url);
-      // Displaying the rating
+      //runAnimate.attr(results[i].images_data-state.url);
+      var animalImage = $("<img class='imag'>");
+      animalImage.attr("src", results[i].images.fixed_height_still.url);
+      animalImage.attr("data-animate", results[i].images.fixed_height.url);
+      animalImage.attr("data-state", "still");
+      
+      // Displaying the rating and image
       animalDiv.append(p1);
       animalDiv.append(animalImage);
-      // Retrieving the URL for the image
-      var imgURL = response.Poster;
-      // Creating an element to hold the image
-      var image = $("<img>").attr("src", imgURL);
-      // Appending the image
-      animalDiv.append(image);
       $("#animalsView").prepend(animalDiv);
     }
-
-
   });
 }
-$(document).on("click", ".animal", function () {
-  event.preventDefault();
-
-  // Then dynamicaly generates buttons
-  var a = $("<button>");
-  //added class
-  a.addClass("animal-btn");
-  // Added a data-attribute
-  a.attr("data-state", results);
-  console.log(a);
-  // Provided the initial button text
-  //a.text(topics[i]);
-  // Added the button to the buttons-view div
-  $("#buttonsView").append(a);
-  //console.log(".gif");
-  var state = $(a).attr("data-state");
-  //var state = $(this).attr("data-state");
-  console.log(state);
-  // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-  // Then, set the image's data-state to animate
-  // Else set src to the data-still value
+$(document).on("click",".imag", function () {
+  var state = $(this).attr("data-state");
+  
+  //If the clicked image's state is still, update its src attribute to what its data-animate value is.
+  //Then, set the image's data-state to animate
+  //Else set src to the data-still value
   if (state === "still") {
     console.log(state);
-    $(".gif").attr("src", $(".gif").attr("data-animate"));
-    //console.log(state);
-    $(".gif").attr("data-state", "animate");
+    $(this).attr("src", $(this).attr("data-animate"));
+    $(this).attr("data-state", "animate");
     console.log("data-state");
   } else {
-    $(".gif").attr("src", $(".gif").attr("data-still"));
+    $(this).attr("src", $(this).attr("data-still"));
     //console.log();
-    $(".gif").attr("data-state", "still");
+    $(this).attr("data-state", "still");
   }
 });
+
 
 function renderButtons() {
 
