@@ -3,3 +3,6 @@
 ![app Image](/assets/images/animal.png)
 ## You can see it on the following link
 https://yeiska.github.io/API-Animals/
+
+## You can see the code here:
+https://github.com/Yeiska/API-Animals
