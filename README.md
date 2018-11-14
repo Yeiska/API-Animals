@@ -6,3 +6,12 @@ https://yeiska.github.io/API-Animals/
 
 ## You can see the code here:
 https://github.com/Yeiska/API-Animals
+
+# Technologies used:
+
+### Node.js
+### JavaScript
+### jQuery
+### Bootstrap
+### CSS
+### Html
