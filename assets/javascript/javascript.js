@@ -6,7 +6,7 @@ function displayAnimalInfo() {
 
   var topic = $(this).attr("data-name");
   console.log(topic);
-  var key = "dc6zaTOxFJmzC";
+  var key = "43zrqxk7ngThmC5o8RMJrClvim3djS9f&q";
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=" + key + "&limit=10" + "gif-non-animated";
 
   console.log(queryURL);
